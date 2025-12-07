@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Limelight&display=swap');
+
+
+body {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    background-color: #080808;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+
+main {
+    flex: 1;
+    padding: 40px;
+    color: #f0f0f0;
+    text-align: center;
+}
+
+/* Header Styles */
+
+header {
+    background-color: #1a1a1a;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header_title {
+    font-family: 'Limelight', cursive;
+    color: #ffffff;
+    font-weight: 200;
+    margin: 0;
+}
+
+.header_links {
+    display: flex;
+}
+
+.header__link {
+    color: #ffffff;
+    background-color: #080808;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    text-decoration: none;
+    margin: 0 5px;
+    font-weight: 500;
+    padding: 8px 10px;
+    border-radius: 30px;
+    border: #ffffff 1px solid;
+    transition: 0.3s;
+
+    &:hover {
+        background-color: #303030;
+        transition: 0.3s;
+    }
+}
