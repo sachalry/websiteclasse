@@ -10,8 +10,6 @@ body {
     min-height: 100vh;
 }
 
-
-
 main {
     flex: 1;
     padding: 40px;
@@ -59,4 +57,75 @@ header {
         background-color: #303030;
         transition: 0.3s;
     }
+}
+
+/* Main Content Styles */
+
+h1 {
+    font-size: 36px;
+    font-family: "Limelight", cursive;
+    font-weight: 100;
+}
+
+/* Loader Styles */
+
+.load_screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: transform 0.5s ease;
+    animation: loaderAnim 0.1s ease;
+}
+
+@keyframes loaderAnim {
+    0% {
+        transform : translateY(100%)
+    }
+    100% {
+        transform : translateY(0%)
+    }
+}
+
+.load_screen.loaded {
+    transform: translateY(100%);
+}
+
+/* .loader_number {
+    font-size: 48px;
+    color: #ffffff;
+    font-family: 'Limelight', serif;
+    font-weight: 700;
+} */
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  display: inline-grid;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  height: 27px;
+  aspect-ratio: 5;
+  --c: #ffffff 90deg,#0000 0;
+  background:
+   conic-gradient(from 135deg at top   ,var(--c)),
+   conic-gradient(from -45deg at bottom,var(--c)) 12.5% 100%;
+  background-size: 20% 50%;
+  background-repeat: repeat-x;
+  mask: repeating-linear-gradient(90deg,#ffffff 0 15%,#0000 0 50%) 0 0/200%;
+  animation: l8 .8s infinite linear;
+}
+.loader:after {
+  animation-delay: -.2s;
+  animation-direction: reverse;
+}
+@keyframes l8{
+  to {-webkit-mask-position:-100% 0}
 }
