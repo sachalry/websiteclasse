@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Matière - {{ name }}</title>
+</head>
+<body>
+<h1>Matière - {{ name }}</h1>
+<ul>
+    {% for c in cours %}
+    <li>
+        <a href="{{ url_for('cour', id_cours=c['id_cours']) }}">{{ c['date'] }} - {{ c['contenu'] }}</a>
+    </li>
+    {% endfor %}
+</ul>
+<a href="{{ url_for('cours') }}">🔙 Retour aux matières</a>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Admin</title>
+    <link rel="stylesheet" href="/static/admin.css">
+</head>
+<body>
+
+<header>
+    <h1>🛠️ Panel Admin</h1>
+    <a href="/logout" class="logout">Déconnexion</a>
+</header>
+
+<section class="upload-section">
+    <h2>Uploader une image</h2>
+    <form id="upload-form">
+        <input type="file" id="image-input" accept="image/*" required>
+        <button type="submit">Uploader</button>
+    </form>
+</section>
+
+<section class="gallery-section">
+    <h2>Images</h2>
+    <div class="gallery" id="gallery"></div>
+</section>
+
+<h2>Matières</h2>
+<ul>
+    {% for matiere in matieres %}
+    <li>
+        {{ matiere['nom'] }}
+        <ul>
+            {% for cour in cours[matiere['id_matiere']] %}
+            <li>{{ cour['contenu'] }}</li>
+            {% endfor %}
+            <li class="add-cours">
+                <a href="/admin/panel/cours/add">➕ Ajouter un cours</a>
+            </li>
+            <li class="remove-cours">
+                <a href="/admin/panel/cours/delete/{{ matiere['id_matiere'] }}">❌ Supprimer un cours</a>
+            </li>
+        </ul>
+    </li>
+    {% endfor %}
+    <li class="add-matiere">
+        <a href="/admin/panel/matiere/add">➕ Ajouter une matière</a>
+    </li>
+    <li class="remove-matiere">
+        <a href="/admin/panel/matiere/delete">❌ Supprimer une matière</a>
+    </li>
+</ul>
+
+
+<script src="/static/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/form.css">
+</head>
+<body>
+    <section>
+        <h2>Ajouter une matière</h2>
+        <form method="POST" action="{{ url_for('create_matiere') }}">
+            <input name="nom" placeholder="Nom de la matière" required>
+            <button type="submit">Ajouter</button>
+        </form>
+        <a href="{{ url_for('admin') }}">Retour</a>
+    </section>
+</body>
+</html>
+

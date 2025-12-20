@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/form.css">
+</head>
+<body>
+    <section>
+        <h2>Supprimer un cours</h2>
+        <form method="POST" action="{{ url_for('delete_cours') }}">
+            <select name="id_cours" required>
+                {% for c in cours %}
+                <option value="{{ c['id_cours'] }}">{{ c['date'] }} - {{ c['contenu'] }}</option>
+                {% endfor %}
+            </select>
+            <button class="delete" type="submit">Supprimer</button>
+        </form>
+        <a href="{{ url_for('admin') }}">Retour</a>
+    </section>
+</body>
+</html>
+
+

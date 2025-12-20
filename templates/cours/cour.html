@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Cours</title>
+</head>
+<body>
+<h1>Cours</h1>
+<p>{{ cours['date'] }} - {{ cours['contenu'] }} ({{ cours['auteur'] }})</p>
+{% for image in images %}
+    <div>
+        <img src="{{ url_for('static', filename='uploads/' ~ image['filename']) }}" alt="Image associée au cours" style="max-width: 300px;">
+    </div>
+{% endfor %}
+<a href="{{ url_for('cours') }}">🔙 Retour aux matières</a>
+</body>
+</html>

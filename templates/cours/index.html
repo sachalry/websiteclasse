@@ -31,6 +31,27 @@
         <p class="cours_subtitle">
             Ici, vous trouverez tous les cours disponibles pour la Terminale G, organisés par matière et par thème.
         </p>
+
+        <section class="cours_list">
+            <ul class="cours-matieres_list">
+                {% for matiere in matieres %}
+                <li class="cours-matiere" id="{{ matiere['id_matiere'] }}">
+                    <a class="matiere-link" href="{{ url_for('matiere', id_matiere=matiere['id_matiere']) }}">
+                        <h2 class="matiere-name">{{ matiere['nom'] }}</h2>
+                    </a>
+                    <ul class="matiere-cours">
+                    {% for c in cours[matiere['id_matiere']] %}
+                        <li class="cours-item">
+                            <a class="cours-link" href="{{ url_for('cour', id_cours=c['id_cours']) }}">
+                                <h3 class="cours-content">Cours du {{ c['date']|format_date }}</h3>
+                            </a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
     </main>
 </body>
 <script src="/static/script.js"></script>

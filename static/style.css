@@ -1,18 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Limelight&display=swap');
 
 :root {
-    --color: #f0f0f0;
-    --second-color : #dfdfdf;
-    --inverse-color: #080808;
+    --bg-color: #FFF58A;
+    --second-color : #B3BFFF;
+    --inverse-color: #DD7BDF;
+    --color : #FFBBE1;
+    --color-black: #131313;
     --hover-diff: 2px;
     --basic-shadow : 0 2px 8px  hsl(from var(--inverse-color) h s l / 0.5);
     --inverse-shadow : 0 calc(2px + var(--hover-diff)) 8px hsl(from var(--inverse-color) h s l / 0.5);
+    --br-normal: 8px;
+    --br-large: 20px;
+}
+
+* {    
+    color: var(--color-black);
 }
 
 body {
     margin: 0;
     font-family: 'DM Sans', sans-serif;
-    background-color: var(--second-color);
+    background-color: var(--bg-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -29,6 +37,10 @@ main {
 /* Header Styles */
 
 header {
+    position: sticky;
+    top: 10px;
+    width: calc(100vw - 60px);
+    margin: 10px;
     background-color: var(--color);
     padding: 20px;
     text-align: center;
@@ -36,12 +48,12 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    box-shadow: var(--basic-shadow);
+    border: 2px solid var(--color-black);
 }
 
 .header_title {
     font-family: 'Limelight', cursive;
-    color: var(--inverse-color);
+    color: var(--color-black);
     font-weight: 200;
     margin: 0;
 }
@@ -51,21 +63,21 @@ header {
 }
 
 .header__link {
-    color: var(--inverse-color);
-    background-color: var(--color);
+    color: var(--color-black);
+    background-color: var(--bg-color);
     font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
+    font-size: 15px;
     text-decoration: none;
     margin: 0 7px;
     font-weight: 500;
-    padding: 8px 10px;
-    border-radius: 30px;
+    padding: 10px 12px;
+    border-radius: var(--br-normal);
     transition: 0.3s;
-    box-shadow: var(--basic-shadow);
+    border: 1px solid var(--color-black);
 
     &:hover {
-        box-shadow: var(--inverse-shadow);
-        transform: translateY(calc(0px - var(--hover-diff)));
+        border-radius: var(--br-large);
+        transform: scale(1.1);
     }
 }
 
@@ -81,23 +93,23 @@ h1 {
 
 section.links {
     margin-top: 20vh;
-    width: fit-content;
+    width: 70%;
     display: grid;
-    grid-template-columns: repeat(3, 28vw);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 5vh 2vw;
 }
 
 a.link_ {
     background-color: var(--second-color);
-    box-shadow: var(--basic-shadow);
-    border-radius: 10px;
+    border-radius: var(--br-normal);
     text-decoration: none;
-    color: var(--inverse-color);
+    color: var(--color-black);
     text-align: left;
     padding: 2% 5%;
     display: flex;
     flex-direction: column;
-    transition: transform ease 0.3s, box-shadow ease 0.3s;
+    transition: all ease 0.3s;
+    border: 1px solid var(--color-black);
 
     & h3, p {
         margin:  10px 0;
@@ -105,7 +117,113 @@ a.link_ {
     }
 
     &:hover {
-        transform: translateY(calc(0px - var(--hover-diff)));
-        box-shadow: var(--inverse-shadow);
+        transform: scale(1.05);
+        border-radius: var(--br-large);
+    }
+}
+
+.image-div {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+}
+
+.image-card:hover .delete-btn {
+    display: block;
+}
+
+/* Listes des cours (/cours) */
+
+.cours_list {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-top: 5vh;
+    width: 90vw;
+}
+
+ul.cours-matieres_list {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+li.cours-matiere {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+a.matiere-link {
+    text-decoration: none;
+    display: block;
+    padding: 15px;
+    margin: 10px 0;
+    width: 90%;
+    background-color: var(--second-color);
+    border-radius: var(--br-normal);
+    transition: all ease 0.3s;
+    border: 1px solid var(--color-black);
+
+    &:hover {
+        border-radius: var(--br-large);
+        transform: scale(1.02);
+        background-color: var(--color);
+    }
+}
+
+ul.matiere-cours {
+    list-style-type: none;
+    padding: 0;
+    width: 90%;
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.cours-item {
+    margin: 5px 0;
+    width: auto;
+}
+
+a.cours-link {
+    width: auto;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    background-color: var(--color);
+    border-radius: var(--br-normal);
+    transition: all ease 0.3s;
+    border: 1px solid var(--color-black);
+    &:hover {
+        border-radius: var(--br-large);
+        transform: scale(1.05);
+        background-color: var(--second-color);
     }
 }

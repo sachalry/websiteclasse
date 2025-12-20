@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connection Admin</title>
+    <link rel="stylesheet" href="/static/login.css">
+</head>
+<body>
+    <form class="login_form" method="POST">
+        <h2 class="login-title">Connexion Administrateur</h2>
+        <h3 class="login-subtitle">Nom d'utilisateur</h3>
+        <input class="login-input -username" name="username" placeholder="Nom d'utilisateur">
+        <h3 class="login-subtitle">Mot de passe</h3>
+        <input class="login-input -password" name="password" type="password" placeholder="Mot de passe">
+        <button class="login-button" type="submit">Connexion</button>
+    </form>
+
+    {% if error %}
+    <p class="error">❌ {{ error }}</p>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Limelight&display=swap');
+
+        :root {
+            --color:red;
+        }
+        .login_form {
+            border-color: red;
+        }
+
+        .error {
+            width: fit-content;
+
+            color: var(--color);
+            opacity: 0;
+            text-align: center;
+            font-weight: bold;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+
+            font-family: 'DM Sans', sans-serif;
+            padding: 10px 20px;
+            border: 2px solid var(--color);
+            border-radius: 8px;
+            animation: error_popup 5s ease-in-out;
+        }
+
+        @keyframes error_popup {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+    </style>
+    {% endif %}
+</body>
+</html>

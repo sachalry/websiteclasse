@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Limelight&display=swap');
+
+:root {
+    --color : #47acff;
+}
+
+.login_form {
+    width: 300px;
+    height: auto;
+
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+}
+
+.login_form h2 {
+    text-align: center;
+    margin: 20px 0;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 1000;
+    font-size: 20px;
+}
+
+.login_form h3 {
+    text-align: center;
+    margin: 20px 0 0 0;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+}
+
+.login_form .login-input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+
+    &:focus {
+        border-color: var(--color);
+        outline: none;
+    }
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--color);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+

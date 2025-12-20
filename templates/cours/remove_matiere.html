@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/form.css">
+</head>
+<body>
+    <section>
+        <h2>Supprimer une matière</h2>
+        <form method="POST" action="{{ url_for('delete_matiere') }}">
+            <select name="id_matiere" required>
+                {% for m in matieres %}
+                <option value="{{ m['id_matiere'] }}">{{ m['nom'] }}</option>
+                {% endfor %}
+            </select>
+            <button class="delete" type="submit">Supprimer</button>
+        </form>
+        <a href="{{ url_for('admin') }}">Retour</a>
+    </section>
+</body>
+</html>
+
+
