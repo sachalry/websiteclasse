@@ -34,9 +34,10 @@ main {
     text-align: center;
 }
 
+/* Scrollbar Styles */
+
 ::-webkit-scrollbar {
-    z-index: -1;
-    width: 6px;
+   width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -46,12 +47,22 @@ main {
 
 /* Header Styles */
 
+@keyframes headerIn {
+    from {
+        width: calc(100vw - 64px);
+        height: 40px;
+        top: 10px;
+        left: 10px;
+    }
+}
+
 header {
     position: sticky;
     z-index: 100;
-    top: 10px;
-    width: calc(100vw - 60px);
-    left: 10px;
+    width: calc(100vw - 49px);
+    height: calc(100vh - 44px);
+    top: 0;
+    left: 0;
     background-color: var(--color);
     padding: 20px;
     text-align: center;
@@ -60,6 +71,15 @@ header {
     justify-content: space-between;
     align-items: center;
     border: 2px solid var(--color-black);
+    transition: width 0.5s ease, height 0.5s ease, top 0.5s ease, left 0.5s ease;
+    animation: headerIn 0.3s ease;
+}
+
+header.loaded {
+    width: calc(100vw - 64px);
+    height: 40px;
+    top: 10px;
+    left: 10px;
 }
 
 .header_title {
@@ -83,7 +103,7 @@ header {
     font-weight: 500;
     padding: 10px 12px;
     border-radius: var(--br-normal);
-    transition: 0.3s;
+    transition: 0.3s ease;
     border: 1px solid var(--color-black);
 
     &:hover {
@@ -92,7 +112,19 @@ header {
     }
 }
 
+.header__link.hide {
+    opacity: 0;
+}
+
 /* Main Content Styles */
+
+main.hide {
+    display: none;
+    opacity: 0;
+}
+main {
+    transition: opacity 0.3s ease;
+}
 
 h1 {
     font-size: 36px;
