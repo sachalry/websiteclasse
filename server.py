@@ -190,6 +190,7 @@ def create_cours():
 
     add_cours_by_id(
         date=request.form["date"],
+        titre=request.form["titre"],
         contenu=request.form["contenu"],
         auteur=request.form["auteur"],
         images=list_filenames,
@@ -209,11 +210,11 @@ def delete_cours():
 def add_matiere_form():
     return render_template("cours/add_matiere.html")
 
-@app.route("/admin/panel/cours/add", methods=["GET"])
+@app.route("/admin/panel/cours/add/<int:id_matiere>", methods=["GET"])
 @login_required
-def add_cours_form():
+def add_cours_form(id_matiere):
     matieres = get_matieres()
-    return render_template("cours/add_cours.html", matieres=matieres)
+    return render_template("cours/add_cours.html", matieres=matieres, current_matiere_id=id_matiere)
 
 @app.route("/admin/panel/matiere/delete", methods=["GET"])
 @login_required

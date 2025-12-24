@@ -21,14 +21,14 @@ def get_cours_by_id(id_cours):
         return []
     return cours
 
-def add_cours_by_id(date, contenu, auteur, images:list, id_matiere):
+def add_cours_by_id(date, titre, contenu, auteur, images:list, id_matiere):
     db = get_db()
     db.execute(
         """
-        INSERT INTO cours (date, contenu, auteur, id_matiere)
-        VALUES (?, ?, ?, ?)
+        INSERT INTO cours (date, title, contenu, auteur, id_matiere)
+        VALUES (?, ?, ?, ?, ?)
         """,
-        (date, contenu, auteur, id_matiere)
+        (date, titre, contenu, auteur, id_matiere)
     )
     id = db.execute("SELECT last_insert_rowid()").fetchone()[0]
     db.commit()
@@ -45,15 +45,15 @@ def delete_cours_by_id(id_cours):
     db.commit()
     db.close()
 
-def update_cours(id_cours, date, contenu, auteur):
+def update_cours(id_cours, date, titre, contenu, auteur):
     db = get_db()
     db.execute(
         """
         UPDATE cours
-        SET date = ?, contenu = ?, auteur = ?
+        SET date = ?, titre = ?, contenu = ?, auteur = ?
         WHERE id_cours = ?
         """,
-        (date, contenu, auteur, id_cours)
+        (date, titre, contenu, auteur, id_cours)
     )
     db.commit()
     db.close()

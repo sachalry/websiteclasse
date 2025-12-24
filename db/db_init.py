@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS matiere (
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS cours (
     id_cours INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
     date TEXT NOT NULL,
     contenu TEXT NOT NULL,
     auteur TEXT NOT NULL,

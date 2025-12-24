@@ -8,7 +8,7 @@
 <body>
 
 <header>
-    <h1>🛠️ Panel Admin</h1>
+    <h1>Gestion du site Terminal G</h1>
     <a href="/logout" class="logout">Déconnexion</a>
 </header>
 
@@ -25,32 +25,35 @@
     <div class="gallery" id="gallery"></div>
 </section>
 
-<h2>Matières</h2>
-<ul>
-    {% for matiere in matieres %}
-    <li>
-        {{ matiere['nom'] }}
-        <ul>
-            {% for cour in cours[matiere['id_matiere']] %}
-            <li>{{ cour['contenu'] }}</li>
-            {% endfor %}
-            <li class="add-cours">
-                <a href="/admin/panel/cours/add">➕ Ajouter un cours</a>
-            </li>
-            <li class="remove-cours">
-                <a href="/admin/panel/cours/delete/{{ matiere['id_matiere'] }}">❌ Supprimer un cours</a>
-            </li>
-        </ul>
-    </li>
-    {% endfor %}
-    <li class="add-matiere">
-        <a href="/admin/panel/matiere/add">➕ Ajouter une matière</a>
-    </li>
-    <li class="remove-matiere">
-        <a href="/admin/panel/matiere/delete">❌ Supprimer une matière</a>
-    </li>
-</ul>
+<section class="matiere_gestion">
 
+    <h2>Liste des matières</h2>
+    <ul class="list-matieres">
+        {% for matiere in matieres %}
+        <li class="list-matiere">
+            <button class="title-matiere"><div class="arrow"></div><h3>{{ matiere['nom'] }}</h3></button>
+            <ul class="list-cours" style="max-height: 0px;">
+                {% for cour in cours[matiere['id_matiere']] %}
+                <li class="list-cour">{{ cour['title'] }} - {{ cour['date'] | format_date}}</li>
+                {% endfor %}
+                <li class="add-cours">
+                    <a href="/admin/panel/cours/add/{{ matiere['id_matiere'] }}">➕ Ajouter un cours</a>
+                </li>
+                <li class="remove-cours">
+                    <a href="/admin/panel/cours/delete/{{ matiere['id_matiere'] }}">➖ Supprimer un cours</a>
+                </li>
+            </ul>
+        </li>
+        {% endfor %}
+        <li class="add-matiere">
+            <a href="/admin/panel/matiere/add">➕ Ajouter une matière</a>
+        </li>
+        <li class="remove-matiere">
+            <a href="/admin/panel/matiere/delete">➖ Supprimer une matière</a>
+        </li>
+    </ul>
+
+</section>
 
 <script src="/static/admin.js"></script>
 </body>

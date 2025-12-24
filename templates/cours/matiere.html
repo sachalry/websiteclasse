@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matière - {{ name }}</title>
+    <title>Matière : {{ name }}</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <header class="header load">
+    <header class="header">
         <nav class="header_links">
             <a href="/" class="header__link">Acceuil</a>
             <a href="/cours/" class="header__link">Cours</a>
@@ -21,15 +21,18 @@
         </nav>
     </header>
     <main>
-        <h1>Matière - {{ name }}</h1>
-        <ul>
-            {% for c in cours %}
-            <li>
-                <a href="{{ url_for('cour', id_cours=c['id_cours']) }}">{{ c['date'] }} - {{ c['contenu'] }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-        <a href="{{ url_for('cours') }}">🔙 Retour aux matières</a>
+        <section class="matiere-section">
+            <h1 class="matiere-title">Matière : {{ name }}</h1>
+            <ul class="matiere__list-cours">
+                {% for c in cours %}
+                <li class="matiere__item-cours">
+                    <a href="{{ url_for('cour', id_cours=c['id_cours']) }}">Cours du {{ c['date'] | format_date }} : {{ c['title'] }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            <a class="matiere__link-back" href="{{ url_for('cours') }}">🔙 Retour aux matières</a>
+        </section>
     </main>
 </body>
+<script src="/static/script.js"></script>
 </html>

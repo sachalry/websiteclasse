@@ -2,16 +2,47 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Cours</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours du {{cours['date'] | format_date}}</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-<h1>Cours</h1>
-<p>{{ cours['date'] }} - {{ cours['contenu'] }} ({{ cours['auteur'] }})</p>
-{% for image in images %}
-    <div>
-        <img src="{{ url_for('static', filename='uploads/' ~ image['filename']) }}" alt="Image associée au cours" style="max-width: 300px;">
-    </div>
-{% endfor %}
-<a href="{{ url_for('cours') }}">🔙 Retour aux matières</a>
+    <header class="header">
+        <nav class="header_links">
+            <a href="/" class="header__link">Acceuil</a>
+            <a href="/cours/" class="header__link">Cours</a>
+            <a href="/revision/" class="header__link">Révision</a>
+        </nav>
+        <h1 class="header_title">TermG</h1>
+        <nav class="header_links">
+            <a href="" class="header__link">Feuille de semaine</a>
+            <a href="" class="header__link">vide</a>
+            <a href="" class="header__link">vide</a>
+        </nav>
+    </header>
+    <main>
+        <div class="affichage-image">
+        </div>
+        <section class="matiere-section">
+            <h1 class="cours-title">Cours du {{ cours['date']  | format_date}}, {{cours["title"]}}</h1>
+            <div class="cours-contenu">
+                <h2 class="contenu-title">Contenu du cours :</h2>
+                <p class="contenu-description">{{ cours['contenu'] }}</p>
+            </div>
+            <p class="cours-auteur">Ecrit par {{ cours['auteur'] }}</p>
+            <div class="cours-imgs">
+                <h2 class="imgs-title">Image(s) du cours :</h2>
+                <div class="list-imgs">
+                    {% for image in images %}
+                        <buttton class="button-img">
+                            <img src="{{ url_for('static', filename='uploads/' ~ image['filename']) }}" alt="Image associée au cours" style="max-width: 300px;">
+                        </button>
+                    {% endfor %}
+                </div>
+            </div>
+            <a href="{{ url_for('cours') }}">🔙 Retour aux matières</a>
+        </section>
+    </main>
 </body>
+<script src="/static/script.js"></script>
 </html>

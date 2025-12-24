@@ -1,50 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Limelight&display=swap');
+
+:root {
+    --bg-color: #FFF58A;
+    --second-color : #B3BFFF;
+    --inverse-color: #DD7BDF;
+    --color : #FFBBE1;
+    --color-black: #131313;
+    --hover-diff: 2px;
+    --basic-shadow : 0 2px 8px  hsl(from var(--inverse-color) h s l / 0.5);
+    --inverse-shadow : 0 calc(2px + var(--hover-diff)) 8px hsl(from var(--inverse-color) h s l / 0.5);
+    --br-normal: 8px;
+    --br-large: 20px;
+    --g-c:#64d668;
+    --g-t:#4abd4e;
+    --r-c: #ff3f3f;
+    --r-t: #db283a;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-color);
     margin: 0;
     padding: 0;
 }
 
+/* Scrollbar Styles */
+
+::-webkit-scrollbar {
+   width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+   background: var(--second-color);
+   border: 1px solid var(--color-black);
+}
+
 header {
-    background: #1e1e2f;
-    color: white;
-    padding: 15px 30px;
+    position: sticky;
+    background:  var(--color);
+    color: var(--color-black);
+    border: 2px solid var(--color-black);
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: calc(100vw - 64px);
+    height: 40px;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
 }
 
 .logout {
-    color: white;
     text-decoration: none;
     font-weight: bold;
 }
 
 section {
     padding: 20px 30px;
-}
-
-.upload-section {
-    background: white;
+    background: var(--second-color);
     margin: 20px;
     border-radius: 8px;
+    border: 1px solid var(--color-black);
 }
 
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fill, 180px);
     gap: 15px;
+    width: 180px;
+    height: 180px;
 }
 
 .image-card {
     position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid var(--color-black);
+
+    &:hover {
+        & img {
+            transform: scale(1.1);
+        }
+    }
 }
 
 .image-card img {
-    width: 180px;
-    height: 180px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 8px;
+    transition : transform 0.2s ease;
 }
 
 .delete-btn {
@@ -59,3 +104,128 @@ section {
     width: 30px;
     height: 30px;
 }
+
+
+.list-matieres {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.list-matiere {
+    margin-bottom: 15px;
+}
+
+button, h3 {
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+button.title-matiere {
+    width: 100%;
+    padding: 20px;
+    background-color: var(--color);
+    margin: 5px;
+    border-radius: 8px;
+    border: 1px solid var(--color-black);
+    display: flex;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: var(--bg-color);
+    }
+}
+
+.arrow {
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid var(--color-black);
+    border-top: 2px solid var(--color-black);
+    rotate: -45deg;
+    translate: 0 50%;
+    transform-origin:center;
+    margin-right: 20px;
+    transition: rotate ease 0.3s, translate 0.3s ease;
+}
+
+.arrow.return {
+    rotate: 135deg;
+    translate: 0;
+}
+
+.list-cours {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    overflow: hidden;
+    transition: max-height 0.6s ease;
+}
+
+.list-cours li,
+.add-matiere,
+.remove-matiere {
+    min-width: 300px;
+    width: fit-content;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px;
+    border: 1px solid var(--color-black);
+}
+
+.list-cour {
+    background-color: var(--bg-color);
+}
+
+li.add-cours,
+li.add-matiere {
+    padding: 0;
+    background-color: var(--g-c);
+    transition: background-color 0.2s ease;
+}
+
+.add-cours:hover,
+.add-matiere:hover {
+    background-color: var(--g-t);
+}
+
+li.remove-cours,
+li.remove-matiere {
+    padding: 0;
+    background-color: var(--r-c);
+    transition: background-color 0.2s ease;
+}
+
+.remove-cours:hover,
+.remove-matiere:hover {
+    background-color: var(--r-t);
+}
+
+.add-cours a,
+.add-matiere a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    color: var(--color-black);
+    text-decoration: none;
+}
+
+.remove-cours a,
+.remove-matiere a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    color: var(--color-black);
+    text-decoration: none;
+}
+
+.add-matiere,
+.remove-matiere {
+    min-width: 300px;
+    width: fit-content;
+}
+
+

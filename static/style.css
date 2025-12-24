@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Limelight&display=swap');
 
 :root {
-    --bg-color: #FFF58A;
-    --second-color : #B3BFFF;
-    --inverse-color: #DD7BDF;
-    --color : #FFBBE1;
-    --color-black: #131313;
+    --bg-color: #535353;
+    --second-color : #0e0e0e;
+    --inverse-color: #bebebe;
+    --color : #303030;
+    --color-black: #ffffff;
     --hover-diff: 2px;
     --basic-shadow : 0 2px 8px  hsl(from var(--inverse-color) h s l / 0.5);
     --inverse-shadow : 0 calc(2px + var(--hover-diff)) 8px hsl(from var(--inverse-color) h s l / 0.5);
@@ -73,6 +73,28 @@ header {
     border: 2px solid var(--color-black);
     transition: width 0.5s ease, height 0.5s ease, top 0.5s ease, left 0.5s ease;
     animation: headerIn 0.3s ease;
+
+    & .header__link {
+        opacity: 0;
+        animation: linksIn 0.1s ease;
+    }
+
+    & .header_title {
+        font-size: 5rem;
+        animation: titleIn 0.1s ease;
+    }
+}
+
+@keyframes linksIn {
+    from {
+        opacity: 1;
+    }
+}
+
+@keyframes titleIn {
+    from {
+        font-size: x-large;
+    }
 }
 
 header.loaded {
@@ -80,6 +102,14 @@ header.loaded {
     height: 40px;
     top: 10px;
     left: 10px;
+
+    & .header__link {
+        opacity: 1;
+    }
+
+    & .header_title {
+        font-size: x-large;
+    }
 }
 
 .header_title {
@@ -87,6 +117,7 @@ header.loaded {
     color: var(--color-black);
     font-weight: 200;
     margin: 0;
+    transition: font-size 0.3s ease 0.2s;
 }
 
 .header_links {
@@ -103,7 +134,7 @@ header.loaded {
     font-weight: 500;
     padding: 10px 12px;
     border-radius: var(--br-normal);
-    transition: 0.3s ease;
+    transition: border-radius 0.3s ease, transform 0.3s ease, opacity 0.3s ease 0.2s;
     border: 1px solid var(--color-black);
 
     &:hover {
@@ -269,4 +300,122 @@ a.cours-link {
         transform: scale(1.05);
         background-color: var(--second-color);
     }
+}
+
+
+/* Style matiere page */
+
+.matiere-section {
+    margin-top: 100px;
+    width: 80%;
+    background-color: var(--second-color);
+    border-radius: var(--br-normal);
+    border: solid 1px var(--color-black);
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.matiere-title,
+.cours-title {
+    background-color: var(--color);
+    border-radius: var(--br-normal);
+    border: solid 1px var(--color-black);
+    margin: 0;
+    width: 60%;
+    min-width: fit-content;
+    margin-bottom: 50px;
+}
+
+.cours-contenu {
+    width: 80%;
+    text-align: left;
+    padding: 10px 20px;
+    background-color: var(--bg-color);
+    border-radius: var(--br-normal) var(--br-normal) 0 0;
+    border: solid 1px var(--color-black);
+    margin: 0;
+}
+
+.cours-auteur {
+    width: 80%;
+    text-align: left;
+    padding: 10px 20px;
+    background-color: var(--bg-color);
+    border-radius: 0 0 var(--br-normal) var(--br-normal);
+    border: solid 1px var(--color-black);
+    border-top: none;
+    margin: 0;
+}
+
+.matiere__list-cours {
+    list-style: none;
+    display: grid;
+    width: 80%;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.matiere__item-cours {
+    background-color: var(--bg-color);
+    border-radius: var(--br-normal);
+    border: solid 1px var(--color-black);
+    margin-bottom: 30px;
+    width: fit-content;
+    transition: 0.2s ease;
+
+    &:hover {
+        background-color: hsl(from var(--bg-color) h s l / 0.9);
+        border-radius: var(--br-large);
+        transform: scale(1.1);
+    }
+}
+
+.matiere__item-cours a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: var(--color-black);
+}
+
+.matiere__link-back {
+    display: block;
+    background-color: var(--color);
+    border-radius: var(--br-normal);
+    border: solid 1px var(--color-black);
+    padding: 10px 20px;
+    text-decoration: none;
+    color: var(--color-black);
+    transition: 0.2s ease;
+
+    &:hover {
+        background-color: hsl(from var(--color) h s l / 0.9);
+        border-radius: var(--br-large);
+        transform: scale(1.1);
+    }
+}
+
+.cours-imgs {
+    width: 80%;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--color);
+    border-radius: var(--br-normal);
+    border: solid 1px var(--color-black);
+}
+
+.imgs-title {
+    width: 100%;
+    text-align: left;
+    margin: 0;
+}
+
+.list-imgs {
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+}
+
+.button_img {
+    border
 }

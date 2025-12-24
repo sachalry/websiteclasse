@@ -36,13 +36,18 @@
                         <h2 class="matiere-name">{{ matiere['nom'] }}</h2>
                     </a>
                     <ul class="matiere-cours">
-                    {% for c in cours[matiere['id_matiere']] %}
+                    {% for c in cours[matiere['id_matiere']][:5] %}
                         <li class="cours-item">
                             <a class="cours-link" href="{{ url_for('cour', id_cours=c['id_cours']) }}">
                                 <h3 class="cours-content">Cours du {{ c['date']|format_date }}</h3>
                             </a>
                         </li>
                     {% endfor %}
+                    <li class="cours-item">
+                        <a href="{{ url_for('matiere', id_matiere=matiere['id_matiere']) }}" class="cours-link">
+                            <h3 class="cours-content">Voir plus 📚</h3>
+                        </a>
+                    </li>
                     </ul>
                 </li>
                 {% endfor %}

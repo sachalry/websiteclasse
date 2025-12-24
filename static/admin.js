@@ -54,3 +54,19 @@ document.getElementById("upload-form").addEventListener("submit", async e => {
 });
 
 loadImages();
+
+const matiereButtons = document.querySelectorAll("button.title-matiere");
+
+matiereButtons.forEach(matiereButton => {
+    matiereButton.addEventListener("click", () => {
+        let el = matiereButton.parentElement.getElementsByClassName("list-cours")[0]
+        if (el.style.maxHeight === "0px"){
+            el.style.maxHeight = el.scrollHeight + "px";
+        }
+        else {
+            el.style.maxHeight = "0";
+        }
+        let arrow = matiereButton.parentElement.getElementsByClassName("arrow")[0]
+        arrow.classList.toggle("return")
+    });
+});

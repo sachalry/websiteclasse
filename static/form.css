@@ -1,5 +1,10 @@
-
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Limelight&display=swap');
+
+    :root {
+        --c:#4CAF50;
+        --s:#f9fff9;
+        --t:#3b863d;
+    }
 
     body {
         font-family: 'DM Sans', sans-serif;
@@ -24,13 +29,23 @@
         font-family: 'DM Sans', sans-serif;
     }
 
-    input {
+    input,
+    textarea {
         width: 96%;
         padding: 10px 2%;
         margin: 10px 0;
         border: 1px solid #ccc;
         border-radius: 4px;
         font-size: 16px;
+        transition: all 0.2s ease;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: none;              /* enlève le contour bleu */
+        border: 1px solid var(--c);  /* couleur au clic */
+        background: var(--s);
     }
 
     select {
@@ -40,6 +55,7 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         font-size: 16px;
+        transition: all 0.2s ease;
     }
 
     select option {
@@ -47,29 +63,23 @@
     }
 
     select option:hover {
-        background-color: #f1f1f1;
+        background-color: var(--s);
     }
 
     button {
         width: 100%;
-        background-color: #28a745;
+        background-color: var(--c);
         color: white;
         padding: 10px 15px;
         border: none;
         border-radius: 4px;
         cursor: pointer;
         font-size: 16px;
-        animation: all 0.3s ease-in-out;
-        &.delete {
-            background-color: #dc3545;
-        }
+        transition: all 0.3s ease-in-out;
     }
 
     button:hover {
-        background-color: #218838;
-        &.delete {
-            background-color: #c82333;
-        }
+        background-color: var(--t);
     }
 
     a {
@@ -81,7 +91,7 @@
         border-radius: 4px;
         padding: 10px 0;
         text-decoration: none;
-        animation: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
     }
 
     a:hover {
