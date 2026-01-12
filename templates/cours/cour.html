@@ -8,6 +8,19 @@
     <link rel="shortcut icon" href="/static/icon.ico" type="image/x-icon">
 </head>
 <body>
+    <div class="burger_menu" id="burger_menu">
+        <button class="burger_menu_close" onclick="document.getElementById('burger_menu').classList.toggle('show')">
+            <span class="cross_line"></span>
+            <span class="cross_line"></span>
+        </button>
+        <h2 class="burger_menu_title">✦TermG✦</h2>
+        <nav class="burger_menu_links">
+            <a href="/" class="burger_menu__link">Acceuil</a>
+            <a href="/cours/" class="burger_menu__link">Cours</a>
+            <a href="/revision/" class="burger_menu__link">Révision</a>
+            <a href="" class="burger_menu__link">Feuille de semaine</a>
+        </nav>
+    </div>
     <header class="header">
         <nav class="header_links">
             <a href="/" class="header__link">Acceuil</a>
@@ -18,6 +31,11 @@
             <a href="/revision/" class="header__link">Révision</a>
             <a href="" class="header__link">Feuille de semaine</a>
         </nav>
+        <button class="burger" onclick="document.getElementById('burger_menu').classList.toggle('show')">
+            <span class="burger_line"></span>
+            <span class="burger_line"></span>
+            <span class="burger_line"></span>
+        </button>
     </header>
     <main>
         <div id="image-modal" class="modal">
