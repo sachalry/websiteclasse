@@ -545,6 +545,117 @@ a.cours-link {
     }
 }
 
+.burger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.burger_line {
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-black);
+    border-radius: 2px;
+}
+
+.burger_menu {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color);
+    z-index: 9999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.burger_menu.show {
+    transform: translateX(0);
+}
+
+.burger_menu_links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.burger_menu__link {
+    color: var(--color-black);
+    background-color: var(--bg-color);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+    margin: 10px 0;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: var(--br-normal);
+    transition: border-radius 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+    border: 1px solid var(--color-black);
+
+    &:hover {
+        border-radius: var(--br-large);
+        transform: scale(1.1);
+    }
+}
+
+.burger_menu_title {
+    font-family: 'Limelight', cursive;
+    font-size: 3rem;
+    color: var(--color-black);
+    margin-bottom: 20px;
+}
+
+.burger_menu_header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+}
+
+.burger_menu_close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    left: 30px;
+    top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cross_line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-black);
+    border-radius: 2px;
+}
+
+.cross_line:first-child {
+    transform: rotate(45deg);
+}
+
+.cross_line:last-child {
+    transform: rotate(-45deg);
+}
+
 /* Responsive Styles */
 
 @media (max-width: 1100px) {
@@ -599,5 +710,17 @@ a.cours-link {
 
     .matiere__item-cours a {
         padding: 10px;
+    }
+
+    .header_links { 
+        display: none;
+    }
+
+    .burger {
+        display: flex;
+    }
+
+    header .header_title {
+        font-size: 10vw;
     }
 }
