@@ -12,6 +12,16 @@
         margin: 0;
         padding: 20px;
     }
+    @keyframes load {
+        0% {
+            opacity: 0;
+            transform: translate(-50%, -52%);
+        }
+        100% {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+    }
 
     section {
         position : absolute;
@@ -21,6 +31,7 @@
         background-color: #fff;
         padding: 30px;
         border-radius: 8px;
+        animation: load 0.3s ease forwards;
     }
 
     h2 {

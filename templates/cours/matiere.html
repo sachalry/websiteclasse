@@ -23,6 +23,9 @@
     <main>
         <section class="matiere-section">
             <h1 class="matiere-title">Matière : {{ name }}</h1>
+            {% if cours|length == 0 %}
+            <p class="matiere__no-cours">Aucun cours disponible pour cette matière.</p>
+            {% endif %}
             <ul class="matiere__list-cours">
                 {% for c in cours %}
                 <li class="matiere__item-cours">

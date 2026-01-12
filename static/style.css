@@ -353,14 +353,15 @@ a.cours-link {
     list-style: none;
     display: grid;
     width: 80%;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    justify-items: center;
 }
 
 .matiere__item-cours {
     background-color: var(--bg-color);
     border-radius: var(--br-normal);
     border: solid 1px var(--color-black);
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     width: fit-content;
     transition: 0.2s ease;
 
@@ -378,7 +379,7 @@ a.cours-link {
     color: var(--color-black);
 }
 
-.matiere__link-back {
+.matiere__link-back, .cours__link-back {
     display: block;
     background-color: var(--color);
     border-radius: var(--br-normal);
@@ -398,6 +399,7 @@ a.cours-link {
 .cours-imgs {
     width: 80%;
     margin-top: 20px;
+    margin-bottom: 10px;
     padding: 10px 20px;
     background-color: var(--color);
     border-radius: var(--br-normal);
@@ -416,6 +418,112 @@ a.cours-link {
     margin-top: 20px;
 }
 
-.button_img {
-    border
+.button-img {
+    width: 300px;
+    height: 200px;
+    border: 1px solid var(--color-black);
+    border-radius: var(--br-normal);
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    cursor: pointer;
+}
+
+.button-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* pseudo-élément pour l'ombre */
+.button-img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 rgba(0,0,0,0);
+    transition: box-shadow 0.6s ease;
+    pointer-events: none; /* pour que le hover passe au bouton */
+}
+
+.button-img:hover img {
+    transform: scale(1.05);
+}
+
+.button-img:hover::after {
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.4);
+}
+
+/* Overlay plein écran */
+.modal {
+    display: none; /* caché par défaut */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    flex-direction: column;
+}
+
+/* Image du modal avec animation */
+.modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    transform: scale(0.5);   /* commence petite */
+    opacity: 0;              /* transparente */
+    cursor: zoom-in;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Quand le modal est actif */
+.modal.show {
+    opacity: 1;
+}
+
+.modal.show .modal-content {
+    transform: scale(1);     /* zoom complet */
+    opacity: 1;              /* opaque */
+}
+
+/* Bouton de fermeture */
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* État zoomé */
+.modal-content.zoomed {
+    transform: scale(4)!important;     /* zoom x2 */
+    cursor: zoom-out;        /* indique qu'on peut dé-zoomer */
+}
+
+.modal-link {
+    display: block;
+    margin-top: 20px;
+    color: white;
+    font-size: 1rem;
+    text-decoration: none;
+    background-color: var(--bg-color);
+    padding: 5px 5px;
+    border-radius: var(--br-normal);
+    border: 1px solid var(--color-black);
+    transition: border-radius 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+        border-radius: var(--br-large);
+        transform: scale(1.05);
+    }
 }

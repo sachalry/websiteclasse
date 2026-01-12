@@ -12,19 +12,6 @@
     <a href="/logout" class="logout">Déconnexion</a>
 </header>
 
-<section class="upload-section">
-    <h2>Uploader une image</h2>
-    <form id="upload-form">
-        <input type="file" id="image-input" accept="image/*" required>
-        <button type="submit">Uploader</button>
-    </form>
-</section>
-
-<section class="gallery-section">
-    <h2>Images</h2>
-    <div class="gallery" id="gallery"></div>
-</section>
-
 <section class="matiere_gestion">
 
     <h2>Liste des matières</h2>
@@ -53,6 +40,21 @@
         </li>
     </ul>
 
+</section>
+
+<section class="upload-section">
+    <h2>Ajouter une image</h2>
+    <p>Vous pouvez ajouter une image en cliquant sur le bouton ci-dessous.</p>
+    <form id="upload-form">
+        <input type="file" id="image-input" accept="image/*" required>
+        <button type="submit">Uploader</button>
+    </form>
+</section>
+
+<section class="gallery-section">
+    <h2>Images</h2>
+    <p>Voici la liste des images qui se trouvent sur le site. Vous pouvez les supprimer en cliquant sur la poubelle. Vous pouvez les afficher en cliquant sur l'image.</p>
+    <div class="gallery" id="gallery"></div>
 </section>
 
 <script src="/static/admin.js"></script>

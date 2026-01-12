@@ -8,6 +8,12 @@ async function loadImages() {
     images.forEach(filename => {
         const card = document.createElement("div");
         card.className = "image-card";
+        
+        // Link to view full image
+        const link = document.createElement("a");
+        link.href = `/uploads/${filename}`;
+        link.target = "_blank";
+        card.appendChild(link);
 
         const img = document.createElement("img");
         img.src = `/uploads/${filename}`;
@@ -29,7 +35,7 @@ async function loadImages() {
             if (result.success) loadImages();
         };
 
-        card.appendChild(img);
+        link.appendChild(img);
         card.appendChild(btn);
         gallery.appendChild(card);
     });

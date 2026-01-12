@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Limelight&display=swap');
 
 :root {
-    --bg-color: #FFF58A;
-    --second-color : #B3BFFF;
-    --inverse-color: #DD7BDF;
-    --color : #FFBBE1;
-    --color-black: #131313;
+    --bg-color: #535353;
+    --second-color : #0e0e0e;
+    --inverse-color: #bebebe;
+    --color : #303030;
+    --color-black: #ffffff;
     --hover-diff: 2px;
     --basic-shadow : 0 2px 8px  hsl(from var(--inverse-color) h s l / 0.5);
     --inverse-shadow : 0 calc(2px + var(--hover-diff)) 8px hsl(from var(--inverse-color) h s l / 0.5);
@@ -22,6 +22,7 @@ body {
     background: var(--bg-color);
     margin: 0;
     padding: 0;
+    color: var(--color-black);
 }
 
 /* Scrollbar Styles */
@@ -54,6 +55,7 @@ header {
 .logout {
     text-decoration: none;
     font-weight: bold;
+    color: var(--color-black);
 }
 
 section {
@@ -68,7 +70,7 @@ section {
     display: grid;
     grid-template-columns: repeat(auto-fill, 180px);
     gap: 15px;
-    width: 180px;
+    width: 100%;
     height: 180px;
 }
 
@@ -94,6 +96,7 @@ section {
 
 .delete-btn {
     position: absolute;
+    text-align: center;
     top: 6px;
     right: 6px;
     border: none;
@@ -103,6 +106,11 @@ section {
     border-radius: 50%;
     width: 30px;
     height: 30px;
+    transition: 0.3s ease background;
+
+    &:hover {
+        background: rgba(0,0,0,0.9);
+    }
 }
 
 
@@ -158,8 +166,8 @@ button.title-matiere {
 .list-cours {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    overflow: hidden;
+    grid-template-columns: repeat(auto-fill);
+    overflow-y: hidden;
     transition: max-height 0.6s ease;
 }
 

@@ -21,7 +21,10 @@
         </nav>
     </header>
     <main>
-        <div class="affichage-image">
+        <div id="image-modal" class="modal">
+            <span class="modal-close">&times;</span>
+            <img class="modal-content" id="modal-img">
+            <a class="modal-link" id="modal-link" href="/" target="_blank">ouvrir dans un nouvel onglet ↗</a>
         </div>
         <section class="matiere-section">
             <h1 class="cours-title">Cours du {{ cours['date']  | format_date}}, {{cours["title"]}}</h1>
@@ -32,6 +35,9 @@
             <p class="cours-auteur">Ecrit par {{ cours['auteur'] }}</p>
             <div class="cours-imgs">
                 <h2 class="imgs-title">Image(s) du cours :</h2>
+                {% if images|length == 0 %}
+                    <p class="no-imgs">Aucune image n'a été ajoutée pour ce cours.</p>
+                {% else %}
                 <div class="list-imgs">
                     {% for image in images %}
                         <buttton class="button-img">
@@ -39,10 +45,69 @@
                         </button>
                     {% endfor %}
                 </div>
+                {% endif %}
             </div>
-            <a href="{{ url_for('cours') }}">🔙 Retour aux matières</a>
+            <a class="cours__link-back" href="{{ url_for('cours') }}">🔙 Retour aux matières</a>
         </section>
     </main>
 </body>
 <script src="/static/script.js"></script>
+<script>
+const modal = document.getElementById("image-modal");
+const modalImg = document.getElementById("modal-img");
+const closeBtn = document.querySelector(".modal-close");
+
+document.querySelectorAll(".button-img img").forEach(img => {
+    img.addEventListener("click", () => {
+        modal.style.display = "flex";       // affiche l'overlay
+        modalImg.src = img.src;             // met la bonne image
+        document.getElementById("modal-link").href = img.src; // met le bon lien
+        setTimeout(() => {
+            modal.classList.add("show");   
+        }, 1);
+    });
+});
+
+closeBtn.addEventListener("click", () => {
+    modal.classList.remove("show");        // animation de fermeture
+    setTimeout(() => {                     // attend la fin de l'animation
+        modal.style.display = "none";
+    }, 300);
+});
+
+// Fermer si clic en dehors de l'image
+modal.addEventListener("click", e => {
+    if (e.target === modal) {
+        modal.classList.remove("show");
+        setTimeout(() => {
+            modal.style.display = "none";
+        }, 300);
+    }
+});
+
+// Zoom sur clic
+modalImg.addEventListener("click", e => {
+    e.stopPropagation(); // empêche de fermer le modal
+
+    if (!modalImg.classList.contains("zoomed")) {
+
+        const rect = modalImg.getBoundingClientRect();
+
+        // Position du curseur dans l'image
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Conversion en pourcentage
+        const xPercent = (x / rect.width) * 100;
+        const yPercent = (y / rect.height) * 100;
+
+        // Définit le point d'origine du zoom
+        modalImg.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+    }
+
+    modalImg.classList.toggle("zoomed"); // toggle zoom
+});
+
+
+</script>
 </html>
