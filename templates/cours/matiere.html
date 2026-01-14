@@ -18,7 +18,7 @@
             <a href="/" class="burger_menu__link">Acceuil</a>
             <a href="/cours/" class="burger_menu__link">Cours</a>
             <a href="/revision/" class="burger_menu__link">Révision</a>
-            <a href="" class="burger_menu__link">Feuille de semaine</a>
+            <a href="/static/feuille_de_semaine.pdf" target="_blank" class="burger_menu__link">Feuille de semaine</a>
         </nav>
     </div>
     <header class="header">
@@ -29,7 +29,7 @@
         <h1 class="header_title">✦TermG✦</h1>
         <nav class="header_links">
             <a href="/revision/" class="header__link">Révision</a>
-            <a href="" class="header__link">Feuille de semaine</a>
+            <a href="/static/feuille_de_semaine.pdf" target="_blank" class="header__link">Feuille de semaine</a>
         </nav>
         <button class="burger" onclick="document.getElementById('burger_menu').classList.toggle('show')">
             <span class="burger_line"></span>
@@ -53,6 +53,53 @@
             <a class="matiere__link-back" href="{{ url_for('cours') }}">🔙 Retour aux matières</a>
         </section>
     </main>
+    <footer class="footer">
+
+        <div class="footer-container">
+            <!-- Footer Top -->
+            <div class="footer-top">
+                <h2 class="footer-title">✦TermG✦</h2>
+                <p class="footer-desc">Un projet fait avec passion pour rendre l’information accessible à tous.</p>
+            </div>
+
+            <div class="footer-content">
+
+                <!-- Section Contact -->
+                <div class="section-contact section-footer">
+                    <h3 class="--contact-titre footer-title">Contact</h3>
+                    <p class="--contact-mail">sachaler25@gmail.com</p>
+                </div>
+
+                <!-- Section Liens utiles -->
+                <div class="section-liens section-footer">
+                    <h3 class="--liens-titre footer-title">Liens utiles</h3>
+                    <ul class="--liens-liste">
+                        <li><a href="/" class="--liens-lien">Acceuil</a></li>
+                        <li><a href="/cours/" class="--liens-lien">Cours</a></li>
+                        <li><a href="/revision/" class="--liens-lien">Révision</a></li>
+                        <li><a href="/static/feuille_de_semaine.pdf" target="_blank" class="--liens-lien">Feuille de semaine</a></li>
+                    </ul>
+                </div>
+
+                <!-- Section Légales -->
+                <div class="section-legales section-footer">
+                    <h3 class="--legales-titre footer-title">Légales</h3>
+                    <ul class="--legales-liste">
+                        <li><a href="/static/mentions_legales.html" class="--legales-lien">Mentions légales</a></li>
+                        <li><a href="/static/politique_de_confidentialite.html" class="--legales-lien">Politique de confidentialité</a></li>
+                        <li><a href="/static/cgu.html" class="--legales-lien">CGU</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="footer-copy">© 2026 Terminale G. Tous droits réservés.</p>
+            <p class="footer-author">Développé par Sacha Leroy</p>
+        </div>
+
+
+    </footer>
 </body>
 <script src="/static/script.js"></script>
 </html>

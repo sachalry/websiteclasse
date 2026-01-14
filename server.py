@@ -29,6 +29,9 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
+def allowed_pdf(filename):
+    return "." in filename and filename.rsplit(".", 1)[1].lower() == "pdf"
+
 @app.template_filter('format_date')
 def format_date(value, format="%d/%m/%Y"):
     from datetime import datetime
@@ -227,6 +230,30 @@ def delete_matiere_form():
 def delete_cours_form(id_matiere):
     cours = get_cours_by_matiere(id_matiere)
     return render_template("cours/remove_cours.html", cours=cours)
+
+
+# système de feuille de semaine (récupérer le fichier, upload le fichier ...) chemin d'accès : static/feuille_de_semaine.pdf
+
+@app.route("/feuille_de_semaine")
+def feuille_de_semaine():
+    return send_from_directory("static", "feuille_de_semaine.pdf")
+
+@app.route("/admin/feuille_de_semaine/upload", methods=["POST"])
+@login_required
+def upload_feuille_de_semaine():
+    file = request.files.get("feuille_de_semaine")
+
+    if not file or file.filename == "":
+        return redirect(url_for("admin"))
+
+    if allowed_pdf(file.filename):
+        filename = "feuille_de_semaine.pdf"
+        file.save(os.path.join("static", filename))
+
+
+    # alerter l'admin que le fichier a bien été uploadé
+
+    return redirect(url_for("admin", _anchor="feuille_de_semaine"))
 
 if __name__ == "__main__":
     print(generate_password_hash("admin"))

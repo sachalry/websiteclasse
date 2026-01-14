@@ -666,6 +666,17 @@ a.cours-link {
     ul.matiere-cours {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .footer-container {
+        flex-direction: column!important;
+        align-items: center!important;
+    }
+
+    .footer-top, .footer-content {
+        width: 100%!important;
+        margin: 10px 0!important;
+        text-align: center!important;
+    }
 }
 
 @media (max-width: 900px) {
@@ -723,4 +734,102 @@ a.cours-link {
     header .header_title {
         font-size: 10vw;
     }
+
+    .footer-content {
+        flex-direction: column!important;
+        align-items: center!important;
+    }
+
+    .section-footer {
+        margin: 20px 0!important;
+    }
+
+    footer p, footer a {
+        font-size: 0.8rem;
+    }
+
+    footer h3 {
+        font-size: 1.2rem;
+    }
+
+    div.footer-bottom {
+        margin-top: 50px;
+    }
+}
+
+/* Footer Styles */
+
+footer {
+    margin-top: 30vh;
+    padding: 20px;
+    text-align: center;
+    background-color: var(--color);
+    color: var(--color-black);
+    border-top: 2px solid var(--color-black);
+}
+
+.footer-title {
+    font-family: "Limelight", cursive;
+    font-weight: normal;
+    margin: 5px 0;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: left;
+    margin: 30px;
+}
+
+.footer-top {
+    width: 30%;
+}
+
+.footer-content {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.section-footer {
+    margin: 0 5%;
+}
+
+.--liens-liste, .--legales-liste {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.--legales-lien, .--liens-lien {
+    text-decoration: none;
+    color: var(--color-black);
+    display: inline-block;
+    transform-origin: left;
+}
+
+.--legales-lien:hover,
+.--liens-lien:hover {
+    color: var(--color-black)!important;
+    transform: scale(1.05);
+}
+
+.section-footer h3, .section-footer p, .section-footer a {
+    color: var(--inverse-color);
+    transition: transform ease-out 0.1s, color 0.3s ease-out;
+}
+
+.section-footer:hover h3, .section-footer:hover p, .section-footer:hover a {
+    color: hsl(from var(--color-black) h s l / 0.8);
+}
+
+.footer-bottom {
+    margin-top: 100px;
+}
+
+.footer-bottom p {
+    color: hsl(from var(--color-black) h s l / 0.3);
+    margin: 5px 0;
 }

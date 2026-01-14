@@ -43,6 +43,16 @@
 
 </section>
 
+<section class="feuille_de_semaine" id="feuille_de_semaine">
+    <h2>Feuille de semaine</h2>
+    <p>Vous pouvez mettre à jour la feuille de semaine en cliquant sur le bouton ci-dessous. Le fichier doit être au format PDF et nommé "feuille_de_semaine.pdf".</p>
+    <form id="feuille-form" enctype="multipart/form-data" method="post" action="/admin/feuille_de_semaine/upload">
+        <input type="file" id="feuille-input" name="feuille_de_semaine" accept="application/pdf" required>
+        <button type="submit">Uploader</button>
+    </form>
+    <p>La feuille de semaine actuelle : <a href="/static/feuille_de_semaine.pdf" target="_blank">feuille_de_semaine.pdf</a></p>
+</section>
+
 <section class="upload-section">
     <h2>Ajouter une image</h2>
     <p>Vous pouvez ajouter une image en cliquant sur le bouton ci-dessous.</p>
