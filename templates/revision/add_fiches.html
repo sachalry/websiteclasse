@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajout de fiche</title>
+    <link rel="stylesheet" href="/static/form.css">
+    <link rel="shortcut icon" href="/static/icon.ico" type="image/x-icon">
+</head>
+<body>
+    <section>
+        <h2>Ajouter une fiche</h2>
+        <form method="POST" action="{{ url_for('create_fiche') }}" enctype="multipart/form-data">
+            <input type="date" name="date" required>
+            <input type="text" name="titre" placeholder="Titre" required>
+            <input type="text" name="auteur" placeholder="Auteur" required>
+            <input type="file" name="images" accept="image/*" multiple>
+            <select name="id_matiere" >
+                {% for matiere in matieres %}
+                    <option value="{{ matiere.id_matiere }}"
+                        {% if matiere.id_matiere == current_matiere_id %}selected{% endif %}>
+                        {{ matiere.nom }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button type="submit">Ajouter</button>
+        </form>
+        <a href="{{ url_for('admin') }}">Retour</a>
+    </section>
+</body>
+</html>
+
+

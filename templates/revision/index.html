@@ -41,9 +41,30 @@
         <h1 class="home_title">Bienvenue en Terminale G</h1>
         <p class="home_desc">Cette section est dédiée aux étudiants de Terminale G. Vous y trouverez des ressources, des informations sur les cours, et des conseils pour réussir votre année scolaire.</p>
     </main>
-    <section>
-        <p>Ce système sera bientôt disponible.</p>
+
+    <section class="revision-section">
+        <h2 class="revision-title">Fiches de Révision</h2>
+        <div class="ajout-fiches">
+            <a href="/ajout-fiche/" class="ajout-fiches-button">Ajouter une fiche de révision</a>
+        </div>
+        <div class="fiche-container">
+            {% for fiche in fiches %}
+            <div class="fiche-card">
+                <a href="/revision/fiche/{{ fiche.id_fiche }}" class="fiche-card--content">
+                    <h3 class="fiche-title">{{ fiche.title }}</h3>
+                    <p class="fiche-auteur">{{ fiche.auteur }}</p>
+                    <p class="fiche-matiere">{{ matieres[fiche.id_fiche] }}</p>
+                    <p class="fiche-likes">Likes : {{ fiche.nb_likes }}</p>
+                    <img class="fiche-image" src="{{ url_for('static', filename='uploads/' ~ images[fiche.id_fiche][0]['filename']) }}" alt="">
+                </a>
+                <form action="/like_fiche/{{ fiche.id_fiche }}" method="post">
+                    <button type="submit" class="fiche-like-button">Like</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
     </section>
+
     <footer class="footer">
 
         <div class="footer-container">

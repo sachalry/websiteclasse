@@ -1,5 +1,5 @@
 from db.db import get_db
-from db.images_service import add_image_by_id
+from db.images_service import add_image_by_id_cours
 
 def get_cours_by_matiere(id_matiere):
     db = get_db()
@@ -34,7 +34,7 @@ def add_cours_by_id(date, titre, contenu, auteur, images:list, id_matiere):
     db.commit()
     db.close()
     for filename in images:
-        add_image_by_id(filename, id)
+        add_image_by_id_cours(filename, id)
 
 def delete_cours_by_id(id_cours):
     db = get_db()

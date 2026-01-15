@@ -6,7 +6,8 @@ from functools import wraps
 
 from db.matiere_service import get_matieres, get_matiere_by_id, add_matiere_by_id, delete_matiere_by_id
 from db.cours_service import get_cours_by_matiere, get_cours_by_id, add_cours_by_id, delete_cours_by_id
-from db.images_service import get_images_by_cours
+from db.images_service import get_images_by_cours, add_image_by_id_fiches, get_images_by_fiches
+from db.fiches_service import get_fiches, get_fiche_by_id, add_fiche, delete_fiche_by_id, get_fiches_by_matiere, like_fiche
 
 UPLOAD_FOLDER = "static/uploads"
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
@@ -63,10 +64,6 @@ def cour(id_cours):
     cours = get_cours_by_id(id_cours)
     images = get_images_by_cours(id_cours)
     return render_template("cours/cour.html", cours=cours, images=images)
-
-@app.route("/revision/", methods=["GET"])
-def revision():
-    return render_template("revision/index.html")
 
 # API endpoint
 
@@ -254,6 +251,56 @@ def upload_feuille_de_semaine():
     # alerter l'admin que le fichier a bien été uploadé
 
     return redirect(url_for("admin", _anchor="feuille_de_semaine"))
+
+# système de gestion des fiches de révision
+
+
+@app.route("/revision/", methods=["GET"])
+def revision():
+    fiches = get_fiches()
+    matieres = {}
+    images = {}
+    for fiche in fiches:
+        images[fiche['id_fiche']] = get_images_by_fiches(fiche['id_fiche'])
+        matieres[fiche['id_fiche']] = get_matiere_by_id(fiche['id_matiere'])['nom']
+    return render_template("revision/index.html", fiches=fiches, matieres=matieres, images=images)
+
+@app.route("/revision/fiche/<int:id_fiche>", methods=["GET"])
+def fiche_revision(id_fiche):
+    fiche = get_fiche_by_id(id_fiche)
+    matiere = get_matiere_by_id(fiche['id_matiere'])['nom']
+    images = get_images_by_fiches(id_fiche)
+    return render_template("revision/fiche.html", fiche=fiche, matiere=matiere, images=images)
+
+@app.route("/ajout-fiche/", methods=["GET"])
+def ajout_fiche():
+    matieres = get_matieres()
+    return render_template("revision/add_fiches.html", matieres=matieres)
+
+@app.route("/create-fiche/", methods=["POST"])
+def create_fiche():
+    title = request.form["titre"]
+    auteur = request.form["auteur"]
+    id_matiere = request.form["id_matiere"]
+    date = request.form["date"]
+    images = request.files.getlist("images")
+    id_fiche = add_fiche(title, auteur, id_matiere, date)
+
+    for image in images:
+        if image and allowed_file(image.filename):
+            filename = f"revision_{get_matiere_by_id(id_matiere)['nom'].replace(' ', '_')}_{id_fiche}_{secure_filename(image.filename)}"
+            image.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+            add_image_by_id_fiches(filename, id_fiche)
+
+    return redirect(url_for("revision"))
+
+@app.route("/deletes-fiche/", methods=["GET"])
+def delete_fiche():
+    fiches = get_fiches()
+    for fiche in fiches:
+        delete_fiche_by_id(fiche["id_fiche"])
+    return redirect(url_for("revision"))
+# lancer le serveur
 
 if __name__ == "__main__":
     print(generate_password_hash("admin"))
