@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, jsonify, session
 from werkzeug.utils import secure_filename
@@ -7,7 +8,7 @@ from functools import wraps
 from db.matiere_service import get_matieres, get_matiere_by_id, add_matiere_by_id, delete_matiere_by_id
 from db.cours_service import get_cours_by_matiere, get_cours_by_id, add_cours_by_id, delete_cours_by_id
 from db.images_service import get_images_by_cours, add_image_by_id_fiches, get_images_by_fiches
-from db.fiches_service import get_fiches, get_fiche_by_id, add_fiche, delete_fiche_by_id, get_fiches_by_matiere, like_fiche
+from db.fiches_service import dislike_fiche, get_fiches, get_fiche_by_id, add_fiche, delete_fiche_by_id, get_fiches_by_matiere, like_fiche
 
 UPLOAD_FOLDER = "static/uploads"
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
@@ -282,7 +283,7 @@ def create_fiche():
     title = request.form["titre"]
     auteur = request.form["auteur"]
     id_matiere = request.form["id_matiere"]
-    date = request.form["date"]
+    date = datetime.now().strftime("%Y-%m-%d")
     images = request.files.getlist("images")
     id_fiche = add_fiche(title, auteur, id_matiere, date)
 
@@ -300,6 +301,26 @@ def delete_fiche():
     for fiche in fiches:
         delete_fiche_by_id(fiche["id_fiche"])
     return redirect(url_for("revision"))
+
+@app.route("/like_fiche/<int:id_fiche>", methods=["POST"])
+def like_fiche_route(id_fiche):
+    like_fiche(id_fiche)
+    fiche = get_fiche_by_id(id_fiche)
+    return jsonify({
+        'nb_likes': fiche['nb_likes'],
+        'liked': "liked"
+    })
+
+@app.route("/dislike_fiche/<int:id_fiche>", methods=["POST"])
+def dislike_fiche_route(id_fiche):
+    dislike_fiche(id_fiche)
+    fiche = get_fiche_by_id(id_fiche)
+    
+    return jsonify({
+        'nb_likes': fiche['nb_likes'],
+        'disliked': "disliked"
+    })
+
 # lancer le serveur
 
 if __name__ == "__main__":

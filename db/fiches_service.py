@@ -61,7 +61,7 @@ def like_fiche(id_fiche):
     db.commit()
     db.close()
 
-def unlike_fiche(id_fiche):
+def dislike_fiche(id_fiche):
     db = get_db()
     db.execute(
         "UPDATE fiches SET nb_likes = nb_likes - 1 WHERE id_fiche = ? AND nb_likes > 0",

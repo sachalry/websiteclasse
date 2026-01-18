@@ -37,24 +37,29 @@
             <span class="burger_line"></span>
         </button>
     </header>
-    <main>
-        <h1 class="home_title">Bienvenue en Terminale G</h1>
-        <p class="home_desc">Cette section est dédiée aux étudiants de Terminale G. Vous y trouverez des ressources, des informations sur les cours, et des conseils pour réussir votre année scolaire.</p>
-    </main>
+
+    <div id="image-modal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modal-img">
+        <a class="modal-link" id="modal-link" href="/" target="_blank">ouvrir dans un nouvel onglet ↗</a>
+    </div>
 
     <section class="revision-section">
-        <h2 class="revision-title">{{ fiche.title }}</h2>
-        <div class="fiche-details">
-            <p class="fiche-auteur"><strong>Auteur :</strong> {{ fiche.auteur }}</p>
-            <p class="fiche-matiere"><strong>Matière :</strong> {{ matiere.nom }}</p>
-            <p class="fiche-likes"><strong>Likes :</strong> {{ fiche.nb_likes }}</p>
+        <div class="fiche-content">
+            <h2 class="revision-title"><strong>Titre :</strong> {{ fiche.title }}</h2>
+            <div class="fiche-details">
+                <p class="fiche-auteur"><strong>Auteur :</strong> {{ fiche.auteur }}</p>
+                <p class="fiche-matiere"><strong>Matière :</strong> {{ matiere }}</p>
+            </div>
+            <div class="list-imgs">
+                {% for image in images %}
+                    <button class="button-img">
+                        <img src="{{ url_for('static', filename='uploads/' ~ image['filename']) }}" alt="Image associée à la fiche">
+                    </button>
+                {% endfor %}
+            </div>
+            <a class="fiche-link_back" href="{{ url_for('revision') }}">🔙 Retour aux fiches de révision</a>
         </div>
-        <div class="fiche-images">
-            {% for image in images %}
-                <img src="{{ url_for('static', filename='uploads/' ~ image['filename']) }}" alt="">
-            {% endfor %}
-        </div>
-        <a href="/static/uploads/{{ fiche.filename }}" class="fiche-download" download>Télécharger la fiche</a>
     </section>
 
     <footer class="footer">
@@ -72,6 +77,7 @@
                 <div class="section-contact section-footer">
                     <h3 class="--contact-titre footer-title">Contact</h3>
                     <p class="--contact-mail">sachaler25@gmail.com</p>
+                    <a class="--contact-insta" href="https://www.instagram.com/sachalry_/" target="_blank">Instagram</a>
                 </div>
 
                 <!-- Section Liens utiles -->
@@ -106,4 +112,5 @@
     </footer>
 </body>
 <script src="/static/script.js"></script>
+<script src="/static/images_view.js"></script>
 </html>

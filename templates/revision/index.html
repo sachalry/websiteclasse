@@ -47,19 +47,17 @@
         <div class="ajout-fiches">
             <a href="/ajout-fiche/" class="ajout-fiches-button">Ajouter une fiche de révision</a>
         </div>
+        <h2 class="revision-title">Liste des fiches :</h2>
         <div class="fiche-container">
             {% for fiche in fiches %}
-            <div class="fiche-card">
+            <div class="fiche-card" style="--bg-image: url('{{ url_for('static', filename='uploads/' ~ images[fiche.id_fiche][0]['filename']) }}');">
                 <a href="/revision/fiche/{{ fiche.id_fiche }}" class="fiche-card--content">
                     <h3 class="fiche-title">{{ fiche.title }}</h3>
                     <p class="fiche-auteur">{{ fiche.auteur }}</p>
                     <p class="fiche-matiere">{{ matieres[fiche.id_fiche] }}</p>
-                    <p class="fiche-likes">Likes : {{ fiche.nb_likes }}</p>
-                    <img class="fiche-image" src="{{ url_for('static', filename='uploads/' ~ images[fiche.id_fiche][0]['filename']) }}" alt="">
+                    <p>Voir plus ↗️</p>
                 </a>
-                <form action="/like_fiche/{{ fiche.id_fiche }}" method="post">
-                    <button type="submit" class="fiche-like-button">Like</button>
-                </form>
+                <button type="submit" class="fiche-like-button" data-fiche-id="{{ fiche.id_fiche }}"><span class="like-count">{{ fiche.nb_likes }}</span> 👍</button>
             </div>
             {% endfor %}
         </div>
@@ -80,6 +78,7 @@
                 <div class="section-contact section-footer">
                     <h3 class="--contact-titre footer-title">Contact</h3>
                     <p class="--contact-mail">sachaler25@gmail.com</p>
+                    <a class="--contact-insta" href="https://www.instagram.com/sachalry_/" target="_blank">Instagram</a>
                 </div>
 
                 <!-- Section Liens utiles -->
@@ -114,4 +113,38 @@
     </footer>
 </body>
 <script src="/static/script.js"></script>
+<script>
+document.querySelectorAll('.fiche-like-button').forEach(button => {
+    button.addEventListener('click', async () => {
+        const ficheId = button.dataset.ficheId;
+        let response;
+
+        if (button.classList.contains('liked')) {
+            // déjà liké, on enleve le like
+            response = await fetch(`/dislike_fiche/${ficheId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+        }
+        else {
+            response = await fetch(`/like_fiche/${ficheId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+        }   
+
+        const data = await response.json();
+
+        // mise à jour du compteur
+        button.querySelector('.like-count').textContent = data.nb_likes;
+
+        // état visuel
+        button.classList.toggle('liked');
+    });
+});
+</script>
 </html>
